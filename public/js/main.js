@@ -91,44 +91,13 @@ if(managePosts_index){
                     data: 'id',
                     render: function(data) {
                         return `<button onclick="deletePost(${data})" name="btn" class="text-red-500 hover:underline mr-2">delete</button>` +
-                            `<a href="${URLROOT}/ManagePosts/deletePost/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
+                            `<a href="${URLROOT}/ManagePosts/addPost/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
                     }
                 }
             ]
         }); 
-
-        // Event delegation for delete button
-        // $('#postsTable').on('click', '.delete_btn', function() {
-        //     var userId = $(this).data('id');
-        //     console.log('Delete button clicked for user ID:', userId);
-
-        //     // Perform your delete logic here or show a confirmation dialog
-        //     var confirmDelete = confirm('Are you sure you want to delete user with ID ' + userId + '?');
-
-
-        //     if (confirmDelete) {
-        //         $.ajax({
-        //             url: 'delete_user_process.php', // Corrected the file name
-        //             method: 'POST',
-        //             data: {
-        //                 delete_btn: true,
-        //                 id_user: userId
-        //             },
-        //             success: function(response) {
-        //                 console.log(response);
-
-
-        //                 // Remove the row from the DataTable
-        //                 usersTable.row($(this).closest('tr')).remove().draw();
-
-        //             },
-        //             error: function(error) {
-        //                 console.error('Error deleting user:', error);
-        //             }
-        //         });
-        //     }
-        // });
-
     });
 
 }
+
+// 

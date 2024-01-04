@@ -1,16 +1,16 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-    <a href="<?php echo URLROOT; ?>/posts/index" class="flex items-center gap-1 bg-gray-200 p-2 rounded-md w-20 ">
+    <a href="<?php echo URLROOT; ?>/managePosts/index" class="flex items-center gap-1 bg-gray-200 p-2 rounded-md w-20 ">
         <ion-icon name="play-back"></ion-icon>
         <div>
-            Back
+            BACK 
         </div>
     </a>
     <div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl">
         <h2 class="text-2xl font-semibold mb-4">Add Post</h2>
         <p class="text-gray-600 mb-6">Create a post with this form</p>
 
-        <form action="<?php echo URLROOT; ?>/posts/add" method="post">
+        <form action="<?php echo URLROOT; ?>/managePosts/addPost" method="post">
             <div class="mb-4">
                 <label for="title" class="block text-gray-600">Title: *</label>
                 <input type="text" name="title" value="<?php echo $data['title'];?>" 
