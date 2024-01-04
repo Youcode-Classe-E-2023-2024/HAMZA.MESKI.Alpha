@@ -6,7 +6,7 @@ class Pages extends Controller {
 
     public function index() {
         if(isLoggedIn()) {
-            redirect('posts/index');
+            redirect('home/index');
         }
 
         $data = [
