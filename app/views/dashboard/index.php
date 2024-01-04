@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <!--  -->
-<main class="flex bg-gray-100 min-h-screen">
+<main id="dashboard_index" class="flex bg-gray-100 min-h-screen">
         <aside class="hidden sm:flex sm:flex-col">
             <a href="#" class="inline-flex items-center justify-center h-20 w-20 bg-purple-600 hover:bg-purple-500 focus:bg-purple-500">
                 <svg fill="none" viewBox="0 0 64 64" class="h-12 w-12">
@@ -58,7 +58,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">62</span>
+                            <span id="users_number" class="block text-2xl font-bold">62</span>
                             <span class="block text-gray-500">Total Users</span>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">83</span>
+                            <span id="posts_number" class="block text-2xl font-bold">83</span>
                             <span class="block text-gray-500">Total Posts</span>
                         </div>
                     </div>

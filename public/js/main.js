@@ -1,5 +1,4 @@
 console.log('hello, JS');
-
 // home controller
 const home = document.getElementById('home'); 
 if(home){
@@ -35,3 +34,88 @@ if(home){
     })
 }
 
+// dashboard controller 
+const dashboard_index = document.getElementById('dashboard_index'); 
+if(dashboard_index){
+    // detecting numbers of users and posts on the plateform
+    const users_number = document.getElementById('users_number');
+    const posts_number = document.getElementById('posts_number');
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json())
+    .then(data => posts_number.textContent = data.length);
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => users_number.textContent = data.length);
+
+    // 
+}
+
+// managePost controller 
+const managePosts_index = document.getElementById('managePosts_index');
+
+if(managePosts_index){
+    $(document).ready(function(){
+        // Initialize DataTable
+        $('#postsTable').DataTable({
+            "ajax": {
+                "url": "https://jsonplaceholder.typicode.com/posts",
+                "dataSrc": "",
+                // "data": formData,
+                "type": 'GET',
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "userId"},
+                {"data": "title"},
+                {"data": "body"},
+                {
+                    data: 'id',
+                    render: function(data) {
+                        return '<form action="edit.php" method="post">' +
+                            '<button name="btn" class="text-blue-500 hover:underline mr-2">Edit</button>' +
+                            '<input name="id" type="hidden" value="' + data + '">' +
+                            '</form>' +
+                            '<button class="delete_btn text-red-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">Delete</button>';
+                    }
+                }
+            ]
+        }); 
+
+        // Event delegation for delete button
+        $('#postsTable').on('click', '.delete_btn', function() {
+            var userId = $(this).data('id');
+            console.log('Delete button clicked for user ID:', userId);
+
+            // Perform your delete logic here or show a confirmation dialog
+            var confirmDelete = confirm('Are you sure you want to delete user with ID ' + userId + '?');
+
+
+            if (confirmDelete) {
+                $.ajax({
+                    url: 'delete_user_process.php', // Corrected the file name
+                    method: 'POST',
+                    data: {
+                        delete_btn: true,
+                        id_user: userId
+                    },
+                    success: function(response) {
+                        console.log(response);
+
+
+                        // Remove the row from the DataTable
+                        usersTable.row($(this).closest('tr')).remove().draw();
+
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error('Error deleting user:', error);
+                    }
+                });
+            }
+        });
+
+    });
+
+}
