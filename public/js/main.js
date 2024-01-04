@@ -100,16 +100,47 @@ if(managePosts_index){
 
 }
 
-// const add_post_form = document.getElementById('add_post_form'); 
-// const title_input = document.getElementById('title_input');
-// const body_input = document.getElementById('body_input'); 
+// add post section 
+const add_post_section = document.getElementById('add_post_section'); 
+if(add_post_section){
+    const add_button = document.getElementById('add_button'); 
+    const apsection = document.getElementById('apsection');
+    add_button.addEventListener('click', function(event){
+        event.preventDefault(); 
+        html = `  <div class="mb-4">
+                                <label for="title" class="block text-gray-600">Title: *</label>
+                                <input id="title_input" type="text" name="title" value="" 
+                                    class="mt-1 p-2 w-full border rounded-md">
+                                <span class="text-red-500"> </span>
+                            </div>
+                            <div class="mb-4">
+                                <label for="body" class="block text-gray-600">Body: *</label>
+                                <textarea id="body_input" name="body"
+                                    class="mt-1 p-2 w-full border rounded-md"></textarea>
+                                <span class="text-red-500">  </span>
+                            </div>`;
+    apsection.insertAdjacentHTML('beforeend', html);
+    })
 
-// add_post_form.addEventListener('submit', function(event) {
-//     event.preventDefault(); 
+    // 
     
-//     if(title_input.value.trim().length != 0 && body_input.value.trim().length != 0){
-        
-//     }
-// })
+    const add_post_form = document.getElementById('add_post_form'); 
+    console.log(add_post_form);
+    add_post_form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST', 
+            body : formData
+        })
+        .then(res=>{
+            res.json()
+            if(res.ok==true){
+                console.log(res.ok)
+                console.log('posts added succussfully');
+            }
+        })
+    })
+}
 
-// posts multiple adding
+console.log('hi')
