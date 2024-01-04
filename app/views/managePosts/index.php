@@ -3,7 +3,7 @@
 <main id="managePosts_index" class="p-4">
     <section class="flex justify-between mb-4">
         <div class="text-2xl font-semibold">Posts</div>
-        <a href="#" class="flex items-center bg-blue-500 text-white p-2 rounded-md">
+        <a href="<?php echo URLROOT; ?>/ManagePosts/addPost" class="flex items-center bg-blue-500 text-white p-2 rounded-md">
             <ion-icon name="pencil-outline" role="img" class="md:hydrated mr-2"></ion-icon>
             <p>Add post</p>
         </a>

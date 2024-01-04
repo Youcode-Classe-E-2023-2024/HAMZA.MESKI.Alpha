@@ -91,7 +91,7 @@ if(managePosts_index){
                     data: 'id',
                     render: function(data) {
                         return `<button onclick="deletePost(${data})" name="btn" class="text-red-500 hover:underline mr-2">delete</button>` +
-                            `<a href="${URLROOT}/ManagePosts/addPost/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
+                            `<a href="${URLROOT}/ManagePosts/editPost/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
                     }
                 }
             ]
@@ -100,4 +100,16 @@ if(managePosts_index){
 
 }
 
-// 
+// const add_post_form = document.getElementById('add_post_form'); 
+// const title_input = document.getElementById('title_input');
+// const body_input = document.getElementById('body_input'); 
+
+// add_post_form.addEventListener('submit', function(event) {
+//     event.preventDefault(); 
+    
+//     if(title_input.value.trim().length != 0 && body_input.value.trim().length != 0){
+        
+//     }
+// })
+
+// posts multiple adding
