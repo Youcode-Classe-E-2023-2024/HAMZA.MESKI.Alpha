@@ -10,10 +10,10 @@
             </a>
             <div class="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
                 <nav class="flex flex-col mx-4 my-6 space-y-4">
-                    <a href="#" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
+                    <a href="<?php echo URLROOT ?>/ManageUsers/index" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
                         <ion-icon name="people-outline" class="text-3xl"></ion-icon>
                     </a>
-                    <a href="#" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
+                    <a href="<?php echo URLROOT ?>/ManagePosts/index" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
                         <ion-icon name="reader-outline" class="text-3xl"></ion-icon>
                     </a>
                 </nav>
