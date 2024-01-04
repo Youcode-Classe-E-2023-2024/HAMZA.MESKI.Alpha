@@ -15,6 +15,11 @@
         <?php if(isset($_SESSION['user_id'])): ?>
             <ul class="flex space-x-4 ml-4">
                 <li>
+                    <a href="<?php echo URLROOT; ?>/dashboard/index" class="text-white hover:text-gray-300">Dashboard</a>
+                </li>
+            </ul>
+            <ul class="flex space-x-4 ml-4">
+                <li>
                     <a href="<?php echo URLROOT; ?>/users/logout" class="text-white hover:text-gray-300">Logout</a>
                 </li>
             </ul>
