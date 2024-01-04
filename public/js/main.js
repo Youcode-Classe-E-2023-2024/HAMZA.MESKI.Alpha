@@ -1,4 +1,22 @@
-console.log('hello, JS');
+/* constants */
+const URLROOT = 'http://localhost/HAMZA.MESKI.Alpha';
+
+/* functions */ 
+function deletePost(id){
+    fetch('https://jsonplaceholder.typicode.com/posts/' + id, {
+        method: 'DELETE', 
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(res => {
+        if(res.status == 200) {
+            console.log(res.status);
+            console.log(`post with id ${id} deleted successfully`);
+        }
+    })
+}
+
 // home controller
 const home = document.getElementById('home'); 
 if(home){
@@ -54,7 +72,6 @@ if(dashboard_index){
 
 // managePost controller 
 const managePosts_index = document.getElementById('managePosts_index');
-
 if(managePosts_index){
     $(document).ready(function(){
         // Initialize DataTable
@@ -73,48 +90,44 @@ if(managePosts_index){
                 {
                     data: 'id',
                     render: function(data) {
-                        return '<form action="edit.php" method="post">' +
-                            '<button name="btn" class="text-blue-500 hover:underline mr-2">Edit</button>' +
-                            '<input name="id" type="hidden" value="' + data + '">' +
-                            '</form>' +
-                            '<button class="delete_btn text-red-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">Delete</button>';
+                        return `<button onclick="deletePost(${data})" name="btn" class="text-red-500 hover:underline mr-2">delete</button>` +
+                            `<a href="${URLROOT}/ManagePosts/deletePost/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
                     }
                 }
             ]
         }); 
 
         // Event delegation for delete button
-        $('#postsTable').on('click', '.delete_btn', function() {
-            var userId = $(this).data('id');
-            console.log('Delete button clicked for user ID:', userId);
+        // $('#postsTable').on('click', '.delete_btn', function() {
+        //     var userId = $(this).data('id');
+        //     console.log('Delete button clicked for user ID:', userId);
 
-            // Perform your delete logic here or show a confirmation dialog
-            var confirmDelete = confirm('Are you sure you want to delete user with ID ' + userId + '?');
-
-
-            if (confirmDelete) {
-                $.ajax({
-                    url: 'delete_user_process.php', // Corrected the file name
-                    method: 'POST',
-                    data: {
-                        delete_btn: true,
-                        id_user: userId
-                    },
-                    success: function(response) {
-                        console.log(response);
+        //     // Perform your delete logic here or show a confirmation dialog
+        //     var confirmDelete = confirm('Are you sure you want to delete user with ID ' + userId + '?');
 
 
-                        // Remove the row from the DataTable
-                        usersTable.row($(this).closest('tr')).remove().draw();
+        //     if (confirmDelete) {
+        //         $.ajax({
+        //             url: 'delete_user_process.php', // Corrected the file name
+        //             method: 'POST',
+        //             data: {
+        //                 delete_btn: true,
+        //                 id_user: userId
+        //             },
+        //             success: function(response) {
+        //                 console.log(response);
 
-                        location.reload();
-                    },
-                    error: function(error) {
-                        console.error('Error deleting user:', error);
-                    }
-                });
-            }
-        });
+
+        //                 // Remove the row from the DataTable
+        //                 usersTable.row($(this).closest('tr')).remove().draw();
+
+        //             },
+        //             error: function(error) {
+        //                 console.error('Error deleting user:', error);
+        //             }
+        //         });
+        //     }
+        // });
 
     });
 

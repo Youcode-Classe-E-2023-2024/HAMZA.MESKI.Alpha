@@ -1,9 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
+
 <main id="managePosts_index" class="p-4">
-    <section class="flex justify-between">
-        <div>Posts</div>
+    <section class="flex justify-between mb-4">
+        <div class="text-2xl font-semibold">Posts</div>
         <a href="#" class="flex items-center bg-blue-500 text-white p-2 rounded-md">
-            <ion-icon name="pencil-outline" role="img" class="md hydrated"></ion-icon>
+            <ion-icon name="pencil-outline" role="img" class="md:hydrated mr-2"></ion-icon>
             <p>Add post</p>
         </a>
     </section>
@@ -13,12 +14,13 @@
             <tr>
                 <th class="py-2 px-4">Id</th>
                 <th class="py-2 px-4">UserId</th>
-                <th class="py-2 px-4">title</th>
-                <th class="py-2 px-4">body</th>
+                <th class="py-2 px-4">Title</th>
+                <th class="py-2 px-4">Body</th>
                 <th class="py-2 px-4">Action</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 </main>
+
 <?php require APPROOT . '/views/inc/footer.php'; ?>
