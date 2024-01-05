@@ -12,7 +12,34 @@ function deletePost(id){
     .then(res => {
         if(res.status == 200) {
             console.log(res.status);
-            console.log(`post with id ${id} deleted successfully`);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Post deleted successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    })
+}
+
+function deleteUser(id){
+    fetch('https://jsonplaceholder.typicode.com/users/' + id, {
+        method: 'DELETE', 
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(res => {
+        if(res.status == 200) {
+            console.log(res.status);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "User deleted successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
         }
     })
 }
@@ -110,13 +137,13 @@ if(add_post_section){
         html = `  <div class="mb-4">
                                 <label for="title" class="block text-gray-600">Title: *</label>
                                 <input id="title_input" type="text" name="title" value="" 
-                                    class="mt-1 p-2 w-full border rounded-md">
+                                    class="mt-1 p-2 w-full border rounded-md" required>
                                 <span class="text-red-500"> </span>
                             </div>
                             <div class="mb-4">
                                 <label for="body" class="block text-gray-600">Body: *</label>
                                 <textarea id="body_input" name="body"
-                                    class="mt-1 p-2 w-full border rounded-md"></textarea>
+                                    class="mt-1 p-2 w-full border rounded-md" required></textarea>
                                 <span class="text-red-500">  </span>
                             </div>`;
     apsection.insertAdjacentHTML('beforeend', html);
@@ -137,10 +164,43 @@ if(add_post_section){
             res.json()
             if(res.ok==true){
                 console.log(res.ok)
-                console.log('posts added succussfully');
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Posts added successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             }
         })
     })
 }
 
-console.log('hi')
+// manageUsers controller 
+const manageUsers_index = document.getElementById('manageUsers_index'); 
+if(manageUsers_index){
+    $(document).ready(function(){
+        // Initialize DataTable
+        $('#usersTable').DataTable({
+            "ajax": {
+                "url": "https://jsonplaceholder.typicode.com/users",
+                "dataSrc": "",
+                // "data": formData,
+                "type": 'GET',
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "username"},
+                {"data": "email"},
+                {"data": "phone"},
+                {
+                    data: 'id',
+                    render: function(data) {
+                        return `<button onclick="deleteUser(${data})" name="btn" class="text-red-500 hover:underline mr-2">delete</button>` +
+                            `<a href="${URLROOT}/ManageUsers/editUser/${data}" class="delete_btn text-blue-500 hover:underline focus:outline-none focus:ring focus:border-red-300" data-id="' + data + '">edit</a>`;
+                    }
+                }
+            ]
+        }); 
+    });
+}

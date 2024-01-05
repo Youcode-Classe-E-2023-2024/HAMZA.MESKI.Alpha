@@ -9,8 +9,8 @@
         </a>
         <section>
             <div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl">
-                <h2 class="text-2xl font-semibold mb-4">Add Post</h2>
-                <p class="text-gray-600 mb-6">Create a post with this form</p>
+                <h2 class="text-2xl font-semibold mb-4">Add User</h2>
+                <p class="text-gray-600 mb-6">Add a user with this form</p>
         
                 <form id="add_post_form" action="<?php echo URLROOT; ?>/managePosts/addPost" method="post">
                     <div id="apsection">

@@ -10,5 +10,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- tailwind cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- sweetalert cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
