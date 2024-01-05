@@ -4,11 +4,12 @@ class ManageUsers extends Controller {
         $this->view('manageUsers/index');
     }
 
-    public function addPost(){
-        if($_SERVER['REQUEST_METHOD'] == 'GET') {
+    public function addUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'username' => '',
                 'email' => '',
+                'phone' => '',
                 'user_id' => $_SESSION['user_id'], 
             ];
 

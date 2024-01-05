@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-    <main id="add_post_section" class="flex flex-col">
-        <a href="<?php echo URLROOT; ?>/managePosts/index" class="flex items-center gap-1 bg-gray-200 p-2 rounded-md w-20 ">
+    <main id="add_user_section" class="flex flex-col">
+        <a href="<?php echo URLROOT; ?>/manageUsers/index" class="flex items-center gap-1 bg-gray-200 p-2 rounded-md w-20 ">
             <ion-icon name="play-back"></ion-icon>
             <div>
                 BACK 
@@ -11,19 +11,23 @@
             <div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl">
                 <h2 class="text-2xl font-semibold mb-4">Add User</h2>
                 <p class="text-gray-600 mb-6">Add a user with this form</p>
-        
-                <form id="add_post_form" action="<?php echo URLROOT; ?>/managePosts/addPost" method="post">
+
+                <form id="add_user_form" action="<?php echo URLROOT; ?>/manageUsers/addUser" method="post">
                     <div id="apsection">
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-600">Title: *</label>
-                            <input id="title_input" type="text" name="title" class="mt-1 p-2 w-full border rounded-md" required>
-                            <span class="text-red-500"> <?php echo $data['title_err']; ?> </span>
+                            <label for="username" class="block text-gray-600">username: *</label>
+                            <input type="text" name="username" value="<?php echo $data['username'];?>" 
+                                class="mt-1 p-2 w-full border rounded-md" required>
                         </div>
                         <div class="mb-4">
-                            <label for="body" class="block text-gray-600">Body: *</label>
-                            <textarea id="body_input" name="body"
-                                class="mt-1 p-2 w-full border rounded-md" required></textarea>
-                            <span class="text-red-500"> <?php echo $data['body_err']; ?> </span>
+                            <label for="email" class="block text-gray-600">email: *</label>
+                            <input type="text" name="email" value="<?php echo $data['email'];?>" 
+                                class="mt-1 p-2 w-full border rounded-md" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-600">phone: *</label>
+                            <input type="number" name="phone" value="<?php echo $data['phone'];?>" 
+                                class="mt-1 p-2 w-full border rounded-md" required>
                         </div>
                     </div>
                     <input type="submit" value="Submit" class="bg-green-500 rounded-md p-2 text-white cursor-pointer font-bold">

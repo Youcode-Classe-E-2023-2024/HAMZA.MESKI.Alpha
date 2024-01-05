@@ -152,28 +152,29 @@ if(add_post_section){
     // 
     
     const add_post_form = document.getElementById('add_post_form'); 
-    console.log(add_post_form);
-    add_post_form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST', 
-            body : formData
+    if(add_post_form){
+        add_post_form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST', 
+                body : formData
+            })
+            .then(res=>{
+                res.json()
+                if(res.ok==true){
+                    console.log(res.ok)
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Posts added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
         })
-        .then(res=>{
-            res.json()
-            if(res.ok==true){
-                console.log(res.ok)
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Posts added successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-        })
-    })
+    }
 }
 
 // manageUsers controller 
@@ -203,4 +204,57 @@ if(manageUsers_index){
             ]
         }); 
     });
+}
+
+// add user section 
+const add_user_section = document.getElementById('add_user_section'); 
+if(add_user_section){
+    console.log(add_user_section);
+    const add_button = document.getElementById('add_button'); 
+    const apsection = document.getElementById('apsection');
+    console.log(add_button);
+    add_button.addEventListener('click', function(event){
+        event.preventDefault(); 
+        html = `<div class="mb-4">
+                    <label for="username" class="block text-gray-600">username: *</label>
+                    <input type="text" name="username" value="" 
+                        class="mt-1 p-2 w-full border rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-600">email: *</label>
+                    <input type="text" name="email" value="" 
+                        class="mt-1 p-2 w-full border rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-600">phone: *</label>
+                    <input type="number" name="phone" value="" 
+                        class="mt-1 p-2 w-full border rounded-md">
+                </div>`;
+        apsection.insertAdjacentHTML('beforeend', html);
+    })
+    const add_user_form = document.getElementById('add_user_form'); 
+    console.log(add_user_form);
+    if(add_user_form){
+        add_user_form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://jsonplaceholder.typicode.com/users', {
+                method: 'POST', 
+                body : formData
+            })
+            .then(res=>{
+                res.json()
+                if(res.ok==true){
+                    console.log(res.ok)
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Users added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
+        })
+    }
 }
