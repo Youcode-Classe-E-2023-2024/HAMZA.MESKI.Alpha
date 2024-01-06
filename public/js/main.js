@@ -94,67 +94,11 @@ if(dashboard_index){
     .then(res => res.json())
     .then(data => users_number.textContent = data.length);
 
-    // graph 1
-        // Fetch users data
-        const usersPromise = fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json());
-
-        // Fetch posts data
-        const postsPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json());
-
-        // Wait for both promises to resolve
-        Promise.all([usersPromise, postsPromise])
-            .then(([users, posts]) => {
-                // Create a mapping of user IDs to post counts
-                const userPostCount = {};
-                posts.forEach(post => {
-                    if (userPostCount[post.userId]) {
-                        userPostCount[post.userId]++;
-                    } else {
-                        userPostCount[post.userId] = 1;
-                    }
-                });
-
-                // Extract relevant data for the plot
-                const usernames = users.map(user => user.username);
-                const postCounts = usernames.map(username => userPostCount[users.find(user => user.username === username).id] || 0);
-
-                // Create a bar chart using Plotly
-                const trace = {
-                    x: usernames,
-                    y: postCounts,
-                    type: 'bar',
-                    text: postCounts.map(String),
-                    textposition: 'auto',
-                    marker: {
-                        color: 'rgb(158,202,225)',
-                        opacity: 0.7,
-                        line: {
-                            color: 'rgb(8,48,107)',
-                            width: 1.5
-                        }
-                    }
-                };
-
-                const layout = {
-                    title: 'Number of Posts per User',
-                    xaxis: {
-                        title: 'Usernames'
-                    },
-                    yaxis: {
-                        title: 'Number of Posts'
-                    }
-                };
-
-                const config = { responsive: true };
-
-                // Plot the chart
-                Plotly.newPlot('chart1', [trace], layout, config);
-            })
-            .catch(error => console.error('Error fetching data:', error));
+    /************ Fetch users and posts data ***************/
+    const usersPromise = fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json());
+    const postsPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json());
     
-    // graph 2
- 
-    // Wait for both promises to resolve
+    /************ graph1  **************/
     Promise.all([usersPromise, postsPromise])
         .then(([users, posts]) => {
             // Create a mapping of user IDs to post counts
@@ -167,33 +111,85 @@ if(dashboard_index){
                 }
             });
 
-            // Extract relevant data for the pie chart
+            // Extract relevant data for the plot
             const usernames = users.map(user => user.username);
             const postCounts = usernames.map(username => userPostCount[users.find(user => user.username === username).id] || 0);
 
-            // Create a pie chart using Plotly
+            // Create a bar chart using Plotly
             const trace = {
-                labels: usernames,
-                values: postCounts,
-                type: 'pie',
-                textinfo: 'percent+label',
-                insidetextorientation: 'radial'
+                x: usernames,
+                y: postCounts,
+                type: 'bar',
+                text: postCounts.map(String),
+                textposition: 'auto',
+                marker: {
+                    color: 'rgb(158,202,225)',
+                    opacity: 0.7,
+                    line: {
+                        color: 'rgb(8,48,107)',
+                        width: 1.5
+                    }
+                }
             };
 
             const layout = {
-                title: 'Distribution of Posts Among Users'
+                title: 'Number of Posts per User',
+                xaxis: {
+                    title: 'Usernames'
+                },
+                yaxis: {
+                    title: 'Number of Posts'
+                }
             };
 
             const config = { responsive: true };
 
             // Plot the chart
-            Plotly.newPlot('chart2', [trace], layout, config);
+            Plotly.newPlot('chart1', [trace], layout, config);
         })
         .catch(error => console.error('Error fetching data:', error));
+    
+        /***********************  graph2  ************************/
+        Promise.all([usersPromise, postsPromise])
+           .then(([users, posts]) => {
+               // Create a mapping of user IDs to post counts
+               const userPostCount = {};
+               posts.forEach(post => {
+                   if (userPostCount[post.userId]) {
+                       userPostCount[post.userId]++;
+                   } else {
+                       userPostCount[post.userId] = 1;
+                   }
+               });
+
+               // Extract relevant data for the pie chart
+               const usernames = users.map(user => user.username);
+               const postCounts = usernames.map(username => userPostCount[users.find(user => user.username === username).id] || 0);
+
+               // Create a pie chart using Plotly
+               const trace = {
+                   labels: usernames,
+                   values: postCounts,
+                   type: 'pie',
+                   textinfo: 'percent+label',
+                   insidetextorientation: 'radial'
+               };
+
+               const layout = {
+                   title: 'Distribution of Posts Among Users'
+               };
+
+               const config = { responsive: true };
+
+               // Plot the chart
+               Plotly.newPlot('chart2', [trace], layout, config);
+           })
+           .catch(error => console.error('Error fetching data:', error));
 }
 
 // managePost controller 
 const managePosts_index = document.getElementById('managePosts_index');
+
 if(managePosts_index){
     $(document).ready(function(){
         // Initialize DataTable
@@ -219,7 +215,6 @@ if(managePosts_index){
             ]
         }); 
     });
-
 }
 
 // add post section 
@@ -298,6 +293,13 @@ if(manageUsers_index){
                 }
             ]
         }); 
+    });
+
+    // download users table as PDF format 
+    document.getElementById('downloadPdf').addEventListener('click', () => {
+        const element = document.getElementById('usersTable');
+
+        html2pdf(element);
     });
 }
 

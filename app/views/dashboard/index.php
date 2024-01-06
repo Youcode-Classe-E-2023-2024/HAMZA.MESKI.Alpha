@@ -75,13 +75,13 @@
                     </div>
                 </section>
                 <section class="grid grid-col-1 gap-6">
-                    <div class="flex flex-col md:col-span-2 md:row-span-3 bg-white shadow rounded-lg">
-                        <div class="px-6 py-5 font-semibold border-b border-gray-100">Semetric representation</div>
-                        <div id="chart1" class="p-4 flex-grow h-[400px]">
+                    <div class="flex flex-col md:col-span-2 md:row-span-4 h-[500px]  bg-white shadow rounded-lg">
+                        <div class="px-6 py-5 font-semibold border-b border-gray-100"><p>Semetric representation</p> </div>
+                        <div id="chart1" class="p-4 flex-grow h-[350px]">
                         </div>
                     </div>
-                    <div class="flex flex-col md:col-span-2 md:row-span-3 bg-white shadow rounded-lg">
-                        <div class="px-6 py-5 font-semibold border-b border-gray-100">Graph representation</div>
+                    <div class="flex flex-col md:col-span-2 md:row-span-4 bg-white shadow rounded-lg">
+                        <div class="px-6 py-5 font-semibold border-b border-gray-100"><p>Graph representation </p></div>
                         <div id="chart2" class="p-4 flex-grow h-[400px]">
                         </div>
                     </div>
