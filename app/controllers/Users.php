@@ -67,18 +67,10 @@ class Users extends Controller {
                 
                 // hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-                // register user 
-                if($this->userModel->register($data)) {
-                    redirect('users/login');
-                }else {
-                    die('something went wrong');
-                }
-
-            }else {
-                // load views with errors
-                $this->view('users/register', $data); 
+                $this->userModel->register($data);
             }
+
+            echo json_encode([$data['name_err'], $data['email_err'], $data['password_err'], $data['confirm_password_err']]);
 
         }else {
             // Init data 
@@ -145,16 +137,12 @@ class Users extends Controller {
                 if($loggedInUser) {
                     // create session
                     $this->createUserSession($loggedInUser);
-                    // die('SUCCESS');
 
                 }else {
                     $data['password_err'] = 'Password incorrect';
-                    $this->view('users/login', $data);
                 }
-            }else {
-                // load views with errors
-                $this->view('users/login', $data); 
             }
+            echo json_encode([$data['email_err'], $data['password_err']]);
 
         }else {
             // Init data 
@@ -175,9 +163,8 @@ class Users extends Controller {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
-        redirect('home/index');
+        // redirect('home/index');
     }
-
     
     public function logout() {
         unset($_SESSION['user_id']);

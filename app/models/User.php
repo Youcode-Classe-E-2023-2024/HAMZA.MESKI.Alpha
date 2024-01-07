@@ -15,11 +15,12 @@ class User {
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         // execute 
-        if($this->db->execute()) {
-            return true;
-        }else {
-            return false;
-        }
+        $this->db->execute();
+        // if() {
+        //     return true;
+        // }else {
+        //     return false;
+        // }
     }
 
     // login user

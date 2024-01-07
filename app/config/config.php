@@ -7,6 +7,7 @@ define('DB_NAME', 'shareposts');
 
 // app root 
 define('APPROOT', dirname(dirname(__FILE__)));
+// die(APPROOT);
 // URL root 
 define('URLROOT', 'http://localhost/HAMZA.MESKI.Alpha');
 // site name

@@ -245,6 +245,8 @@ if(add_post_section){
     if(add_post_form){
         add_post_form.addEventListener('submit', function(event) {
             event.preventDefault();
+
+            // faking adding process
             const formData = new FormData(this);
             fetch('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST', 
@@ -262,6 +264,12 @@ if(add_post_section){
                         timer: 1500
                       });
                 }
+            })
+
+            // sending to notifications the name of the adder 
+            fetch(URLROOT + '/dashboard/insertAdderName')
+            .then(()=> {
+                location.href = URLROOT + '/ManagePosts/addPost';
             })
         })
     }
